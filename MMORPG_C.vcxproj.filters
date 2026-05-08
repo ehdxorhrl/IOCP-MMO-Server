@@ -19,6 +19,12 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{ef5377aa-ca4c-4676-9692-97d970e6d371}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{f240f645-b78a-4b1c-984b-dd115690c63d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Timer">
+      <UniqueIdentifier>{40259e03-6b5b-44dd-8fbe-64d80e100a6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -26,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="WorldObject.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFramework.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="WorldObject.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFramework.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

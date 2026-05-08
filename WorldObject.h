@@ -1,13 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-sf::RenderWindow* g_window;
-sf::Font g_font;
-
-int g_left_x;
-int g_top_y;
-int g_myid;
-
 class OBJECT {
 private:
     bool m_showing{ false };
@@ -17,6 +10,12 @@ private:
     sf::Text m_chat;
     chrono::system_clock::time_point m_mess_end_time;
 
+    sf::RenderWindow* g_window = nullptr;
+    sf::Font g_font;
+
+    int g_left_x = 0;
+    int g_top_y = 0;
+    int g_myid = 1;
 public:
     int id{ -1 };
     int m_x{ 0 }, m_y{ 0 };
