@@ -1,32 +1,83 @@
-# Prerequisites
-*.d
+# =========================
+# Visual Studio
+# =========================
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+.vs/
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Build Results
+# =========================
+
+Debug/
+Release/
+x64/
+x86/
+bin/
+obj/
+out/
+
+[Bb]uild/
+[Bb]uilds/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# =========================
+# Intermediate / Temp
+# =========================
+
 *.obj
-
-# Precompiled Headers
-*.gch
+*.iobj
+*.ipdb
 *.pch
+*.pdb
+*.ilk
+*.idb
+*.tmp
+*.log
+*.tlog
+*.lastbuildstate
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# =========================
+# Executables / Libraries
+# =========================
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
 *.exe
-*.out
-*.app
+*.dll
+*.lib
+*.exp
+
+# =========================
+# Package Managers
+# =========================
+
+packages/
+*.nupkg
+
+# vcpkg installed binaries (optional)
+installed/
+
+# =========================
+# SFML / Assets cache (optional)
+# =========================
+
+# Uncomment if generated automatically
+# Assets/Cache/
+# Temp/
+
+# =========================
+# OS Files
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
