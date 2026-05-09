@@ -1,68 +1,84 @@
 #include "stdafx.h"
 #include "WorldObject.h"
 
-void OBJECT::show()
+WorldObject::WorldObject(
+    sf::Texture& texture,
+    const sf::Font& font,
+    int textureX,
+    int textureY,
+    int width,
+    int height
+)
+    : sprite_(texture, sf::IntRect({ textureX, textureY }, { width, height })),
+    nameText_(font),
+    chatText_(font)
 {
-    m_showing = true;
+    SetName("NONAME");
+    messageEndTime_ = std::chrono::steady_clock::now();
 }
 
-void OBJECT::hide()
+void WorldObject::Show()
 {
-    m_showing = false;
+    showing_ = true;
 }
 
-void OBJECT::a_move(int x, int y)
+void WorldObject::Hide()
 {
-    m_sprite.setPosition(sf::Vector2f{ static_cast<float>(x), static_cast<float>(y) });
+    showing_ = false;
 }
 
-void OBJECT::a_draw()
-{
-    g_window->draw(m_sprite);
+void WorldObject::A_Move(int x, int y) {
+    sprite_.setPosition({(float)x, (float)y});
 }
 
-void OBJECT::move(int x, int y)
+void WorldObject::A_Draw(sf::RenderWindow& window) {
+    window.draw(sprite_);
+}
+void WorldObject::Move(int x, int y)
 {
-    m_x = x;
-    m_y = y;
+    this->x = x;
+    this->y = y;
 }
 
-void OBJECT::draw()
+void WorldObject::Draw(sf::RenderWindow& window, int leftX, int topY)
 {
-    if (!m_showing) return;
+    if (!showing_) return;
 
-    const float rx = (m_x - g_left_x) * 65.0f + 1.0f;
-    const float ry = (m_y - g_top_y) * 65.0f + 1.0f;
+    const float rx = static_cast<float>((x - leftX) * TILE_WIDTH + 1);
+    const float ry = static_cast<float>((y - topY) * TILE_WIDTH + 1);
 
-    m_sprite.setPosition(sf::Vector2f{ rx, ry });
-    g_window->draw(m_sprite);
+    sprite_.setPosition({ rx, ry });
+    window.draw(sprite_);    
 
-    const auto size = m_name.getGlobalBounds();
-
-    if (m_mess_end_time < chrono::system_clock::now()) {
-        m_name.setPosition(sf::Vector2f{ rx + 32.0f - size.size.x / 2.0f, ry - 10.0f });
-        g_window->draw(m_name);
+    if (messageEndTime_ < std::chrono::steady_clock::now())
+    {
+        const auto size = nameText_.getGlobalBounds();
+        nameText_.setPosition({ rx + 32.0f - size.size.x / 2.0f, ry - 10.0f });
+        window.draw(nameText_);
     }
-    else {
-        m_chat.setPosition(sf::Vector2f{ rx + 32.0f - size.size.x / 2.0f, ry - 10.0f });
-        g_window->draw(m_chat);
+    else
+    {
+        const auto size = chatText_.getGlobalBounds();
+        chatText_.setPosition({ rx + 32.0f - size.size.x / 2.0f, ry - 10.0f });
+        window.draw(chatText_);
     }
 }
 
-void OBJECT::set_name(const char str[])
+void WorldObject::SetName(const char str[])
 {
-    m_name.setFont(g_font);
-    m_name.setString(str);
-    if (id < MAX_USER) m_name.setFillColor(sf::Color(255, 255, 255));
-    else m_name.setFillColor(sf::Color(255, 255, 0));
-    m_name.setStyle(sf::Text::Bold);
+    nameText_.setString(str);
+    if (id < MAX_USER) nameText_.setFillColor(sf::Color(255, 255, 255));
+    else nameText_.setFillColor(sf::Color(255, 255, 0));
+    nameText_.setStyle(sf::Text::Bold);
 }
 
-void OBJECT::set_chat(const char str[])
+void WorldObject::SetChat(const char str[])
 {
-    m_chat.setFont(g_font);
-    m_chat.setString(str);
-    m_chat.setFillColor(sf::Color(255, 255, 255));
-    m_chat.setStyle(sf::Text::Bold);
-    m_mess_end_time = chrono::system_clock::now() + chrono::seconds(3);
+    chatText_.setString(str);
+    chatText_.setFillColor(sf::Color::White);
+    chatText_.setStyle(sf::Text::Bold);
+
+    messageEndTime_ =
+        std::chrono::steady_clock::now() + std::chrono::seconds(3);
 }
+

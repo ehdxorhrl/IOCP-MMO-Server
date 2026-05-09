@@ -28,7 +28,7 @@ constexpr auto SCREEN_HEIGHT = 16;
 
 constexpr int MAX_USER = 10000;
 
-constexpr auto TILE_WIDTH = 65;
+constexpr auto TILE_WIDTH = 73;
 constexpr auto WINDOW_WIDTH = SCREEN_WIDTH * TILE_WIDTH;   // size of window
 constexpr auto WINDOW_HEIGHT = SCREEN_WIDTH * TILE_WIDTH;
 

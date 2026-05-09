@@ -1,43 +1,44 @@
 #pragma once
 #include "stdafx.h"
 
-class OBJECT {
+class WorldObject
+{
 private:
-    bool m_showing{ false };
-    sf::Sprite m_sprite;
+    bool showing_{ false };
 
-    sf::Text m_name;
-    sf::Text m_chat;
-    chrono::system_clock::time_point m_mess_end_time;
+    sf::Sprite sprite_;
+    sf::Text nameText_;
+    sf::Text chatText_;
 
-    sf::RenderWindow* g_window = nullptr;
-    sf::Font g_font;
+    std::chrono::steady_clock::time_point messageEndTime_;
 
-    int g_left_x = 0;
-    int g_top_y = 0;
-    int g_myid = 1;
 public:
     int id{ -1 };
-    int m_x{ 0 }, m_y{ 0 };
+    int x{ 0 };
+    int y{ 0 };
     char name[NAME_SIZE]{};
 
-    OBJECT() = delete;
+public:
+    WorldObject() = delete;
 
-    OBJECT(sf::Texture& t, int x, int y, int width, int height)
-        : m_sprite(t, sf::IntRect({ x, y }, { width, height })),
-        m_name(g_font),
-        m_chat(g_font)
-    {
-        set_name("NONAME");
-        m_mess_end_time = chrono::system_clock::now();
-    }
+    WorldObject(
+        sf::Texture& texture,
+        const sf::Font& font,
+        int textureX,
+        int textureY,
+        int width,
+        int height
+    );
 
-    void show();
-    void hide();
-    void a_move(int x, int y);
-    void a_draw();
-    void move(int x, int y);
-    void draw();
-    void set_name(const char str[]);
-    void set_chat(const char str[]);
+    void Show();
+    void Hide();
+
+    void A_Move(int x, int y);
+    void A_Draw(sf::RenderWindow& window);
+
+    void Move(int x, int y);
+    void Draw(sf::RenderWindow& window, int leftX, int topY);
+
+    void SetName(const char str[]);
+    void SetChat(const char str[]);
 };
