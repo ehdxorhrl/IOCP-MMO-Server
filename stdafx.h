@@ -23,12 +23,12 @@ constexpr int CHAT_SIZE = 100;
 constexpr int W_WIDTH = 2000;
 constexpr int W_HEIGHT = 2000;
 
-constexpr auto SCREEN_WIDTH = 16;
-constexpr auto SCREEN_HEIGHT = 16;
+constexpr auto SCREEN_WIDTH = 17;
+constexpr auto SCREEN_HEIGHT = 17;
 
 constexpr int MAX_USER = 10000;
 
-constexpr auto TILE_WIDTH = 73;
+constexpr auto TILE_WIDTH = 65;
 constexpr auto WINDOW_WIDTH = SCREEN_WIDTH * TILE_WIDTH;   // size of window
-constexpr auto WINDOW_HEIGHT = SCREEN_WIDTH * TILE_WIDTH;
+constexpr auto WINDOW_HEIGHT = SCREEN_HEIGHT * TILE_WIDTH;
 

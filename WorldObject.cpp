@@ -44,8 +44,8 @@ void WorldObject::Draw(sf::RenderWindow& window, int leftX, int topY)
 {
     if (!showing_) return;
 
-    const float rx = static_cast<float>((x - leftX) * TILE_WIDTH + 1);
-    const float ry = static_cast<float>((y - topY) * TILE_WIDTH + 1);
+    const float rx = static_cast<float>((x - leftX) * 65.0f + 1);
+    const float ry = static_cast<float>((y - topY) * 65.0f + 1);
 
     sprite_.setPosition({ rx, ry });
     window.draw(sprite_);    
