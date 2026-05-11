@@ -33,7 +33,7 @@ void GameFramework::Run()
 {
 	while (window_.isOpen())
 	{
-		ProcessEvents(); // 자기 클라이언트 이벤트에 대한 처리
+		ProcessEvents(); // 자기 클라이언트 이벤트에 대한 처리, 이벤트로 인해 발생한 패킷 전송
 		Update(); // 서버 연결 전까진 로컬에 대한 처리, 연결 후 패킷에 대한 처리
 		Render();
 	}
