@@ -8,7 +8,13 @@ int main()
 {
     wcout.imbue(locale("korean"));
 
-    game_framework.Initialize();
+    char server_ip[32];
+
+    cout << "Input server IP: ";
+    cin.getline(server_ip, 32);
+    if (strlen(server_ip) == 0) strcpy_s(server_ip, "127.0.0.1");
+
+    game_framework.Initialize(server_ip);
     game_framework.Run();
     
     return 0;

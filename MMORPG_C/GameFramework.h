@@ -5,7 +5,7 @@
 class GameFramework
 {
 public:
-    void Initialize();
+    void Initialize(char* server_ip);
     void Run();
 
     sf::RenderWindow& GetWindow();
@@ -29,4 +29,7 @@ private:
     int left_x;
     int top_y;
     int g_myid;
+
+    sf::TcpSocket socket_;
+    bool connected_{ false };
 };

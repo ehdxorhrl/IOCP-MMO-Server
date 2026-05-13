@@ -1,6 +1,6 @@
 #include "GameFramework.h"
 
-void GameFramework::Initialize()
+void GameFramework::Initialize(char* server_ip)
 {
 	if (false == board_.loadFromFile("map.bmp")) {
 		cout << "Map Load Failed!\n";
@@ -14,8 +14,9 @@ void GameFramework::Initialize()
 		cout << "Font Load Failed!\n";
 		exit(-1);
 	}
-	cout << WINDOW_WIDTH << endl;
-	cout << WINDOW_HEIGHT << endl;
+
+	//cout << WINDOW_WIDTH << endl;
+	//cout << WINDOW_HEIGHT << endl;
 	window_.create(
 		sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }),
 		"MMORPG"
@@ -27,6 +28,20 @@ void GameFramework::Initialize()
 	avatar_->Move(4, 4);
 	avatar_->Show();
 	avatar_->SetName("me");
+
+	auto serverIp = sf::IpAddress::resolve(server_ip);
+
+	if (serverIp.has_value() &&
+		socket_.connect(serverIp.value(), PORT_NUM) == sf::Socket::Status::Done)
+	{
+		socket_.setBlocking(false);
+		connected_ = true;
+		cout << "Connected to server\n";
+	}
+	else
+	{
+		cout << "Server connection failed\n";
+	}
 }
 
 void GameFramework::Run()

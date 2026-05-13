@@ -6,7 +6,7 @@ class ServerFramework
 public:
     void Initialize();
     void Run();
-    void Shutdown();
+    //void Shutdown();
 
 private:
     void CreateListenSocket();
@@ -22,7 +22,6 @@ private:
 
     WSADATA wsaData_;
     std::vector<std::thread> Worker_;
-
 
     //unordered_map<int, class Session> sessions_;
     //World world_;
