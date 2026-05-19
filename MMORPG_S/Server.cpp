@@ -7,7 +7,7 @@ int main()
 	std::wcout.imbue(std::locale("korean"));
 
 	serverframework.Initialize();
-	//serverframework.Run();
+	serverframework.Run();
 	
 	WSACleanup();
 	return 0;

@@ -6,7 +6,8 @@ class ServerFramework
 public:
     void Initialize();
     void Run();
-    //void Shutdown();
+    void Shutdown();
+    ~ServerFramework();
 
 private:
     void CreateListenSocket();
@@ -21,8 +22,9 @@ private:
     HANDLE iocpHandle_{ INVALID_HANDLE_VALUE };
 
     WSADATA wsaData_;
-    std::vector<std::thread> Worker_;
+    std::vector<std::thread> workerThreads_;
 
+    bool isRunning_ = false;
     //unordered_map<int, class Session> sessions_;
     //World world_;
 };
