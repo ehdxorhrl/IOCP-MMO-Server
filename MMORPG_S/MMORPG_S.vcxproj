@@ -131,6 +131,7 @@
     <ClCompile Include="ServerFramework.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="protocol.h" />
     <ClInclude Include="ServerFramework.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
